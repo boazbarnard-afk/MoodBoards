@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoodBoards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222;
+      --text: #f0ece4;
+      --muted: #666;
+      --accent: #c8a97e;
+      --accent2: #8fb8a8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    header {
+      padding: 4rem 4rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .header-meta {
+      text-align: right;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1.8;
+    }
+
+    .grid-container {
+      padding: 3rem 4rem;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .card {
+      background: var(--surface);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.3s ease;
+    }
+
+    .card:hover {
+      background: #161616;
+    }
+
+    .card:hover::before {
+      height: 100%;
+    }
+
+    .card-number {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .card:hover .card-title {
+      color: var(--accent);
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--muted);
+      transition: transform 0.3s, color 0.2s;
+    }
+
+    .card:hover .card-arrow {
+      transform: translate(4px, -4px);
+      color: var(--accent);
+    }
+
+    /* Add new board card */
+    .card-add {
+      background: transparent;
+      border: 1px dashed var(--border);
+      cursor: default;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 180px;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .card-add .plus {
+      font-size: 2rem;
+      font-weight: 200;
+      line-height: 1;
+      color: var(--border);
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header, .grid-container, footer { padding: 2rem 1.5rem; }
+      .header-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Mood<br><span>Boards</span></div>
+    <div class="header-meta">
+      boazbarnard-afk<br>
+      Creative Archive<br>
+      <span id="count">— boards</span>
+    </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="section-label">All Boards</div>
+    <div class="grid" id="board-grid">
+
+      <!-- ✦ ADD YOUR BOARDS BELOW — copy a <a class="card"> block for each new HTML file -->
+
+      <a class="card" href="FUUL_Moodboard.html">
+        <span class="card-number">01 — Mood</span>
+        <div class="card-title">FUUL Moodboard</div>
+        <span class="card-arrow">↗</span>
+      </a>
+
+      <!-- Add more like this:
+      <a class="card" href="YOUR_FILE.html">
+        <span class="card-number">02 — Mood</span>
+        <div class="card-title">Your Title Here</div>
+        <span class="card-arrow">↗</span>
+      </a>
+      -->
+
+      <div class="card card-add">
+        <span class="plus">+</span>
+        <span>Add a board</span>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div><span class="dot"></span>Live on GitHub Pages</div>
+    <div id="footer-date"></div>
+  </footer>
+
+  <script>
+    // Auto update footer date
+    document.getElementById('footer-date').textContent = new Date().getFullYear();
+    
+    // Count boards (excluding the "add" card)
+    const boards = document.querySelectorAll('.card:not(.card-add)').length;
+    document.getElementById('count').textContent = `${boards} board${boards !== 1 ? 's' : ''}`;
+  </script>
+</body>
+</html>
