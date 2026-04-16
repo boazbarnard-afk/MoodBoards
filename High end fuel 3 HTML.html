@@ -90,13 +90,10 @@
   /* ─────────────────────────────────────────
      2. HERO
   ───────────────────────────────────────── */
-  .hero {
-    display: grid;
-    grid-template-columns: 832.5px 1fr;
-    height: 639px;
-    border-bottom: var(--border);
-    overflow: hidden;
-    line-height: normal;
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* was fixed px */
+  height: 75vh; /* scales with screen */
   }
   .hero-image {
     position: relative;
