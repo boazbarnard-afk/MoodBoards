@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FUUL — Investor Moodboard</title>
+<meta name="description" content="FUUL — High-performance food, made effortless. Investor moodboard and creative direction." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#F5F0E6;
+    --surface:#EDE8DC;
+    --surface-2:#E4DDCB;
+    --type:#2A5238;
+    --type-soft:#3d6b4c;
+    --ink:#1f2a23;
+    --muted:#6b6356;
+    --line:#d8cfb9;
+    --signal:#D4820A;
+    --signal-soft:#E1A957;
+    --pad:clamp(20px,3.2vw,44px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--base);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11"}
+  body{
+    background-image:
+      radial-gradient(1200px 600px at 80% -10%, rgba(212,130,10,.06), transparent 60%),
+      radial-gradient(900px 600px at -10% 30%, rgba(42,82,56,.05), transparent 60%);
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.35;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.13  0 0 0 0 0.09  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .serif{font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:400;letter-spacing:.02em}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--type);font-weight:500}
+  .rule{height:1px;background:var(--line);width:100%}
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+    padding:14px var(--pad);background:rgba(245,240,230,.82);backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line)}
+  .nav-logo{height:64px;display:block;mix-blend-mode:multiply}
+  .id-logo{mix-blend-mode:multiply}
+  .ftr-logo-svg{height:84px;width:auto;display:block;mix-blend-mode:screen}
+  .nav-meta{display:flex;gap:28px;align-items:center}
+  .nav-meta span{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .nav-pill{padding:8px 14px;border:1px solid var(--type);border-radius:999px;color:var(--type);font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+
+  /* HERO */
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:0;border-bottom:1px solid var(--line)}
+  .hero-l{padding:clamp(40px,6vw,90px) var(--pad);display:flex;flex-direction:column;justify-content:space-between;gap:48px;background:var(--base)}
+  .hero-tag{display:flex;gap:14px;align-items:center}
+  .hero-tag .dot{width:6px;height:6px;border-radius:999px;background:var(--signal)}
+  .hero h1{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(58px,8.4vw,128px);line-height:.92;letter-spacing:-.035em;color:var(--type)}
+  .hero h1 em{font-style:italic;font-weight:300;color:var(--signal)}
+  .hero-sub{max-width:520px;font-size:15.5px;line-height:1.7;color:#3a4439}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line);padding-top:28px}
+  .hero-stats .s-num{font-family:"Fraunces",serif;font-weight:400;font-size:36px;color:var(--type);line-height:1}
+  .hero-stats .s-num em{color:var(--signal);font-style:normal}
+  .hero-stats .s-lbl{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero-r{position:relative;min-height:560px;background:#cfc5ad;overflow:hidden}
+  .hero-r img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-r::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,82,56,0) 60%, rgba(42,82,56,.18))}
+  .hero-r .badge{position:absolute;left:24px;bottom:24px;background:var(--base);color:var(--type);padding:10px 14px;border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+
+  /* SECTION CHROME */
+  section{padding:clamp(56px,7vw,110px) var(--pad);border-bottom:1px solid var(--line);position:relative}
+  .sec-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:48px}
+  .sec-head h2{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(36px,4.4vw,64px);color:var(--type);line-height:1;letter-spacing:-.02em;max-width:780px}
+  .sec-head h2 em{font-style:italic;color:var(--signal)}
+  .sec-head .right{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-align:right}
+
+  /* MANIFESTO + MOSAIC */
+  .mm{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+  .mm-l{padding:clamp(40px,5vw,72px) var(--pad);display:flex;flex-direction:column;justify-content:center;gap:28px;border-right:1px solid var(--line)}
+  .mm-l .quote{font-family:"Fraunces",serif;font-style:italic;font-weight:300;font-size:clamp(28px,3.1vw,42px);line-height:1.18;color:var(--type);letter-spacing:-.015em}
+  .mm-l .quote em{font-style:italic;color:var(--signal);font-weight:400}
+  .mm-l p{font-size:14.5px;line-height:1.75;color:#3a4439;max-width:540px}
+  .mm-l .sig{display:flex;gap:18px;align-items:center;margin-top:8px}
+  .mm-l .sig svg{height:28px;color:var(--type)}
+  .mm-r{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
+  .mm-r .cell{position:relative;background:var(--surface-2);overflow:hidden;min-height:260px}
+  .mm-r .cell.tall{grid-row:span 2}
+  .mm-r .cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+  .mm-r .cell:hover img{transform:scale(1.04)}
+  .mm-r .cell .tag{position:absolute;left:14px;bottom:14px;background:var(--base);color:var(--type);padding:7px 11px;border-radius:3px;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase}
+
+  /* IDENTITY GRID */
+  .identity{display:grid;grid-template-columns:1.1fr .9fr;gap:0;background:var(--base)}
+  .id-l{padding:clamp(48px,5vw,80px) var(--pad);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:40px}
+  .id-logo{height:96px;width:auto;display:block}
+  .id-tag{font-family:"Fraunces",serif;font-style:italic;font-weight:300;font-size:clamp(24px,2.4vw,32px);color:var(--type);line-height:1.25;max-width:520px}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .sw{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--base)}
+  .sw .chip{height:84px}
+  .sw .meta{padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+  .sw .meta b{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:500}
+  .sw .meta span{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted)}
+  .id-stat{display:flex;gap:32px;border-top:1px solid var(--line);padding-top:24px}
+  .id-stat .n{font-family:"Fraunces",serif;font-weight:400;font-size:44px;color:var(--type);line-height:1}
+  .id-stat .l{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+  /* ICON TRIO */
+  .id-r{padding:clamp(48px,5vw,80px) var(--pad);background:var(--surface);display:flex;flex-direction:column;gap:32px}
+  .id-r .head{display:flex;flex-direction:column;gap:8px}
+  .id-r h3{font-family:"Fraunces",serif;font-weight:300;font-size:36px;color:var(--type);letter-spacing:-.015em}
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .trio .t{background:var(--base);border:1px solid var(--line);border-radius:8px;padding:22px 18px;display:flex;flex-direction:column;gap:14px;min-height:200px;justify-content:space-between}
+  .trio .t .glyph{height:54px;display:flex;align-items:center;color:var(--type)}
+  .trio .t .name{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--type)}
+  .trio .t .dots{display:flex;gap:6px;align-items:center}
+  .trio .t .dots i{width:10px;height:10px;border-radius:50%;background:var(--type);display:inline-block}
+  .trio .t.fats .dots i{background:var(--signal)}
+  .trio .t .ratio{font-family:"Fraunces",serif;font-style:italic;font-size:18px;color:var(--muted)}
+  .id-r .legend{font-size:13.5px;line-height:1.7;color:#3a4439;max-width:480px}
+
+  /* PRODUCT MENU */
+  .menu{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line)}
+  .menu .col{background:var(--base);padding:36px 28px;display:flex;flex-direction:column;gap:18px}
+  .menu .col h4{font-family:"Fraunces",serif;font-weight:400;font-size:24px;color:var(--type)}
+  .menu .col .item{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .menu .col .item:last-child{border-bottom:0}
+  .menu .col .item .nm{font-size:14px;color:var(--ink)}
+  .menu .col .item .nm small{display:block;color:var(--muted);font-size:11px;margin-top:2px;letter-spacing:.02em}
+  .menu .col .item .px{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--type)}
+  .menu .col .pill{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border-radius:999px;background:var(--surface);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--type);width:max-content}
+
+  /* STORE STRIP */
+  .store{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+  .store .s{position:relative;min-height:480px;background:#cfc5ad;overflow:hidden}
+  .store .s img{width:100%;height:100%;object-fit:cover;display:block}
+  .store .s .lbl{position:absolute;left:24px;bottom:24px;background:var(--base);padding:12px 16px;border-radius:4px;display:flex;flex-direction:column;gap:4px}
+  .store .s .lbl b{font-family:"Fraunces",serif;font-weight:400;font-size:18px;color:var(--type)}
+  .store .s .lbl span{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* TICKER */
+  .ticker{background:var(--type);color:var(--base);padding:18px 0;overflow:hidden;border-bottom:1px solid var(--line)}
+  .ticker-track{display:flex;gap:64px;white-space:nowrap;animation:tick 38s linear infinite;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+  .ticker-track span em{color:var(--signal-soft);font-style:normal;font-weight:500;margin-right:10px}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* UNIT ECON */
+  .econ{display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:var(--base)}
+  .econ-l{padding:clamp(48px,5vw,80px) var(--pad);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:24px;justify-content:center}
+  .econ-l h3{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(40px,4.2vw,64px);color:var(--type);line-height:1;letter-spacing:-.02em}
+  .econ-l h3 em{font-style:italic;color:var(--signal)}
+  .econ-l p{font-size:14.5px;line-height:1.75;color:#3a4439;max-width:480px}
+  .econ-r{padding:clamp(48px,5vw,80px) var(--pad);background:var(--surface);display:flex;flex-direction:column;gap:18px;justify-content:center}
+  .bar{display:grid;grid-template-columns:160px 1fr 88px;align-items:center;gap:18px}
+  .bar .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .bar .track{height:14px;background:var(--surface-2);border-radius:999px;overflow:hidden;position:relative}
+  .bar .fill{height:100%;background:linear-gradient(90deg,var(--type),var(--type-soft));border-radius:999px}
+  .bar.signal .fill{background:linear-gradient(90deg,var(--signal),var(--signal-soft))}
+  .bar .v{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--type);text-align:right;font-weight:500}
+
+  /* ATTACH */
+  .attach{display:grid;grid-template-columns:1.05fr 1.05fr .9fr;gap:1px;background:var(--line)}
+  .attach > div{background:var(--base);padding:clamp(28px,3.2vw,44px) var(--pad)}
+  .attach-text{display:flex;flex-direction:column;gap:18px;justify-content:space-between}
+  .attach-text h3{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(30px,3vw,44px);color:var(--type);line-height:1.05;letter-spacing:-.015em}
+  .attach-text h3 em{font-style:italic;color:var(--signal)}
+  .attach-text p{font-size:14px;line-height:1.7;color:#3a4439;max-width:380px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pills .p{padding:7px 12px;border-radius:999px;background:var(--surface);font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--type);border:1px solid var(--line)}
+  .attach-smoothies{position:relative;min-height:380px;background:var(--surface);overflow:hidden;padding:0!important}
+  .attach-smoothies img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06)}
+  .attach-smoothies .lbl{position:absolute;left:18px;bottom:18px;background:var(--base);padding:9px 12px;border-radius:3px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--type)}
+  .attach-r{display:flex;flex-direction:column;gap:14px;justify-content:space-between}
+  .attach-r .head{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .stack{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .stack .row{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--type)}
+  .stack .row .name{color:#3a4439;text-transform:none;letter-spacing:0;font-family:"Inter",sans-serif;font-size:13px}
+  .stack-bar{margin-top:6px;height:18px;border-radius:6px;overflow:hidden;display:flex;background:var(--surface-2)}
+  .stack-bar i{display:block;height:100%}
+  .stack-bar i.a{background:var(--type)}
+  .stack-bar i.b{background:var(--type-soft)}
+  .stack-bar i.c{background:var(--signal)}
+  .stack-bar i.d{background:var(--signal-soft)}
+  .aov{font-family:"Fraunces",serif;font-weight:400;font-size:48px;color:var(--type);line-height:1}
+  .aov small{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-top:8px}
+  .footnote{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+  /* CHART */
+  .chart{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--base)}
+  .chart-l{padding:clamp(48px,5vw,80px) var(--pad);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:20px;justify-content:center}
+  .chart-l h3{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(34px,3.6vw,52px);color:var(--type);line-height:1.05;letter-spacing:-.015em}
+  .chart-l h3 em{font-style:italic;color:var(--signal)}
+  .chart-l p{font-size:14px;line-height:1.7;color:#3a4439;max-width:440px}
+  .chart-r{padding:clamp(48px,5vw,80px) var(--pad);background:var(--surface)}
+  .bars{display:flex;align-items:flex-end;gap:14px;height:260px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  .bars .b{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .bars .b .col{width:100%;background:linear-gradient(180deg,var(--type-soft),var(--type));border-radius:6px 6px 0 0}
+  .bars .b.peak .col{background:linear-gradient(180deg,var(--signal-soft),var(--signal))}
+  .bars .b .lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .bars .b .val{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--type)}
+
+  /* TIMELINE */
+  .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+  .timeline .m{background:var(--base);padding:32px 24px;display:flex;flex-direction:column;gap:10px;min-height:200px}
+  .timeline .m .t{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal)}
+  .timeline .m h5{font-family:"Fraunces",serif;font-weight:400;font-size:22px;color:var(--type);line-height:1.2}
+  .timeline .m p{font-size:13px;line-height:1.65;color:#3a4439}
+
+  /* COMPETITIVE TABLE */
+  .compete{padding:0!important;background:var(--base)}
+  table.cmp{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.cmp th,table.cmp td{padding:18px clamp(14px,1.6vw,22px);text-align:left;border-bottom:1px solid var(--line)}
+  table.cmp th{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--surface)}
+  table.cmp td.brand{font-family:"Fraunces",serif;font-size:18px;color:var(--type)}
+  table.cmp tr.fuul td{background:var(--surface);color:var(--type);font-weight:500}
+  table.cmp tr.fuul td.brand{color:var(--signal)}
+  table.cmp .check{color:var(--type);font-weight:600}
+  table.cmp .x{color:#b3a994}
+
+  /* FOOTER */
+  footer{background:var(--type);color:var(--base);padding:clamp(56px,6vw,90px) var(--pad)}
+  .ftr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;align-items:start}
+  .ftr-logo{height:64px;width:auto;filter:invert(1) brightness(1.05) sepia(.1)}
+  .ftr h6{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal-soft);margin-bottom:14px}
+  .ftr p{font-size:13.5px;line-height:1.7;color:#e8e0cc}
+  .ftr .meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;color:#cfc5ad;margin-top:24px;padding-top:24px;border-top:1px solid rgba(245,240,230,.15)}
+
+  @media (max-width: 980px){
+    .hero,.identity,.econ,.chart,.attach,.menu,.store,.timeline,.mm,.mm-r{grid-template-columns:1fr;grid-template-rows:auto}
+    .mm-r{grid-template-columns:1fr 1fr}
+    .mm-l,.id-l,.econ-l,.chart-l{border-right:0;border-bottom:1px solid var(--line)}
+    .swatches,.trio{grid-template-columns:repeat(2,1fr)}
+    .timeline{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <img class="nav-logo" src="logo-cream.svg" alt="FUUL"/>
+  <div class="nav-meta">
+    <span>Investor Brief · v3.1</span>
+    <span>London · 2025</span>
+    <span class="nav-pill">SEIS Eligible</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-l">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span class="eyebrow">Brand · Concept · Numbers</span>
+    </div>
+    <div>
+      <h1>Feed the<br/>Effort.<em>.</em></h1>
+      <p class="hero-sub" style="margin-top:28px">High-performance food, made effortless. Grab-and-go protein for people with full lives — built for commuters, creatives and capable humans, not bodybuilders.</p>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="s-num">30g<em>+</em></div>
+        <div class="s-lbl">Protein · every SKU</div>
+      </div>
+      <div>
+        <div class="s-num">£8.40</div>
+        <div class="s-lbl">Average basket</div>
+      </div>
+      <div>
+        <div class="s-num">68%</div>
+        <div class="s-lbl">Smoothie attach rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img src="store-exterior.webp" alt="FUUL storefront"/>
+    <div class="badge">Site 01 · Soho · London</div>
+  </div>
+</header>
+
+<!-- MANIFESTO + MOSAIC -->
+<div class="mm">
+  <div class="mm-l">
+    <div class="eyebrow">Manifesto</div>
+    <p class="quote">Most food shouts. <em>Ours doesn't.</em> It just shows up — protein-rich, properly made, ready when you are.</p>
+    <p>FUUL is built for the rhythm of a working day in a real city. Hot-honey chicken at lunch, a salmon bowl after the gym, a 50g protein shake on the walk back to the desk. Three macronutrients. One signature. Zero theatre.</p>
+    <div class="sig">
+      <span class="eyebrow">Hustling · Healthy · Just Hungry</span>
+    </div>
+  </div>
+  <div class="mm-r">
+    <div class="cell tall">
+      <img src="wraps.webp" alt="Protein wraps"/>
+      <span class="tag">Wraps · 28–34g</span>
+    </div>
+    <div class="cell">
+      <img src="bowl-chicken.webp" alt="Farmers Chicken Bowl"/>
+      <span class="tag">Farmers Chicken · 34g</span>
+    </div>
+    <div class="cell">
+      <img src="bowl-salmon.webp" alt="Miso salmon bowl"/>
+      <span class="tag">Miso Salmon · 36g</span>
+    </div>
+    <div class="cell">
+      <img src="bowl-tofu.webp" alt="Mushroom tofu bowl"/>
+      <span class="tag">Mushroom & Tofu · 31g</span>
+    </div>
+    <div class="cell">
+      <img src="bowl-honey-chicken.png" alt="Hot Honey Chicken bowl"/>
+      <span class="tag">Hot Honey Chicken · 38g</span>
+    </div>
+  </div>
+</div>
+
+<!-- IDENTITY + ICON TRIO -->
+<section style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0">
+  <div class="identity">
+    <div class="id-l">
+      <img class="id-logo" src="logo-cream.svg" alt="FUUL wordmark"/>
+      <div class="id-tag">A clean, modern food identity inspired by the visual world of Soho Coffee &amp; Pret — with a quiet performance-nutrition layer underneath.</div>
+      <div class="rule"></div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px">Palette · Warm Forest</div>
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:#F5F0E6"></div><div class="meta"><b>Base</b><span>#F5F0E6</span></div></div>
+          <div class="sw"><div class="chip" style="background:#EDE8DC"></div><div class="meta"><b>Surface</b><span>#EDE8DC</span></div></div>
+          <div class="sw"><div class="chip" style="background:#2A5238"></div><div class="meta"><b>Type</b><span>#2A5238</span></div></div>
+          <div class="sw"><div class="chip" style="background:#D4820A"></div><div class="meta"><b>Signal</b><span>#D4820A</span></div></div>
+        </div>
+      </div>
+      <div class="id-stat">
+        <div><div class="n">30g+</div><div class="l">Protein guaranteed</div></div>
+        <div><div class="n">100%</div><div class="l">Real ingredients</div></div>
+        <div><div class="n">&lt;90s</div><div class="l">Order to hand</div></div>
+      </div>
+    </div>
+
+    <div class="id-r">
+      <div class="head">
+        <div class="eyebrow">Visual Language</div>
+        <h3>The Icon Trio.</h3>
+      </div>
+      <div class="trio">
+        <div class="t">
+          <div class="glyph">
+            <svg viewBox="0 0 80 60" width="68" height="50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <ellipse cx="40" cy="30" rx="28" ry="20"/>
+              <ellipse cx="40" cy="30" rx="14" ry="9" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="name">Protein</div>
+            <div class="ratio" style="margin-top:6px">●●●●</div>
+          </div>
+          <div class="dots"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="t">
+          <div class="glyph">
+            <svg viewBox="0 0 80 60" width="68" height="50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <path d="M6 22 Q20 8 34 22 T62 22 T74 22"/>
+              <path d="M6 38 Q20 24 34 38 T62 38 T74 38" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="name">Carbs</div>
+            <div class="ratio" style="margin-top:6px">●●●</div>
+          </div>
+          <div class="dots"><i></i><i></i><i></i></div>
+        </div>
+        <div class="t fats">
+          <div class="glyph">
+            <svg viewBox="0 0 80 60" width="44" height="50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M40 6 C 22 30, 18 42, 30 52 C 40 60, 50 60, 50 50 C 56 42, 58 30, 40 6 Z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="name">Fats</div>
+            <div class="ratio" style="margin-top:6px;color:var(--signal)">●●</div>
+          </div>
+          <div class="dots"><i></i><i></i></div>
+        </div>
+      </div>
+      <p class="legend">Three soft, hand-drawn glyphs — repeated to show macro proportion. Clusters live next to product names and at pack corners. Slightly naive, never clinical. The signature scales beautifully across cups, wraps, bags and bowls.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section style="padding:0;background:var(--base)">
+  <div class="menu">
+    <div class="col">
+      <div class="pill">Protein Bowls · 30–38g</div>
+      <h4>Bowls</h4>
+      <div class="item"><div class="nm">Hot Honey Chicken<small>Wild rice · pumpkin · kale · tahini</small></div><div class="px">£11.50</div></div>
+      <div class="item"><div class="nm">Miso Salmon<small>Sesame rice · edamame · cucumber</small></div><div class="px">£12.80</div></div>
+      <div class="item"><div class="nm">Mushroom &amp; Tofu<small>Quinoa · kale · chickpea · soy glaze</small></div><div class="px">£10.40</div></div>
+      <div class="item"><div class="nm">Farmers Chicken Bowl<small>Brown rice · roasted veg · herb yoghurt</small></div><div class="px">£11.20</div></div>
+    </div>
+    <div class="col">
+      <div class="pill">Wraps · 28–34g</div>
+      <h4>Wraps</h4>
+      <div class="item"><div class="nm">Caesar Chicken<small>Grilled chicken · cos · parmesan</small></div><div class="px">£7.80</div></div>
+      <div class="item"><div class="nm">Tuna Niçoise<small>Seared tuna · avocado · cucumber</small></div><div class="px">£8.40</div></div>
+      <div class="item"><div class="nm">Falafel &amp; Hummus<small>Spinach · roasted pepper · tahini</small></div><div class="px">£7.20</div></div>
+      <div class="item"><div class="nm">Egg &amp; Sundried Tomato<small>Spinach · hummus · folded omelette</small></div><div class="px">£6.80</div></div>
+    </div>
+    <div class="col">
+      <div class="pill">Smoothies · 30–50g</div>
+      <h4>Shakes &amp; Smoothies</h4>
+      <div class="item"><div class="nm">Chocolate Peanut Butter<small>Whey · oats · cocoa · banana</small></div><div class="px">£6.20</div></div>
+      <div class="item"><div class="nm">Berry Vanilla<small>Whey · mixed berries · oats</small></div><div class="px">£5.80</div></div>
+      <div class="item"><div class="nm">Vanilla Almond<small>Almond milk · vanilla · honey</small></div><div class="px">£5.80</div></div>
+      <div class="item"><div class="nm">Matcha Oat<small>Ceremonial matcha · chia · honey</small></div><div class="px">£6.40</div></div>
+      <div class="item"><div class="nm">Salted Caramel<small>Whey · oats · medjool dates</small></div><div class="px">£6.40</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORE -->
+<section style="padding:0">
+  <div class="store">
+    <div class="s">
+      <img src="store-exterior.webp" alt="Storefront"/>
+      <div class="lbl"><b>Site 01 — Storefront</b><span>Soho · 42 sqm · 1,400 daypart footfall</span></div>
+    </div>
+    <div class="s">
+      <img src="store-interior.webp" alt="Counter"/>
+      <div class="lbl"><b>Counter &amp; Menu Wall</b><span>Smoothie line · grab-and-go fridge</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span><em>£8.40</em>AVG basket</span>
+    <span><em>225</em>tx / day</span>
+    <span><em>29</em>trading days / mo</span>
+    <span><em>£85,072</em>mature monthly revenue</span>
+    <span><em>68%</em>smoothie attach</span>
+    <span><em>22%</em>EBITDA margin (yr 2)</span>
+    <span><em>10.4x</em>cash-on-cash · site</span>
+    <span><em>£8.40</em>AVG basket</span>
+    <span><em>225</em>tx / day</span>
+    <span><em>29</em>trading days / mo</span>
+    <span><em>£85,072</em>mature monthly revenue</span>
+    <span><em>68%</em>smoothie attach</span>
+    <span><em>22%</em>EBITDA margin (yr 2)</span>
+    <span><em>10.4x</em>cash-on-cash · site</span>
+  </div>
+</div>
+
+<!-- UNIT ECON -->
+<section style="padding:0">
+  <div class="econ">
+    <div class="econ-l">
+      <div class="eyebrow">Unit Economics</div>
+      <h3>The model <em>works</em>.</h3>
+      <p>A single mature site delivers <strong>£1.02m</strong> of annual revenue at a <strong>22%</strong> EBITDA margin. Rent and labour fully loaded. Built on conservative attach rates and a basket built around real protein.</p>
+      <p class="footnote">Source: internal model · Site 01 mature year</p>
+    </div>
+    <div class="econ-r">
+      <div class="bar"><div class="k">Revenue / mo</div><div class="track"><div class="fill" style="width:96%"></div></div><div class="v">£85,072</div></div>
+      <div class="bar"><div class="k">COGS</div><div class="track"><div class="fill" style="width:28%"></div></div><div class="v">28%</div></div>
+      <div class="bar"><div class="k">Labour</div><div class="track"><div class="fill" style="width:24%"></div></div><div class="v">24%</div></div>
+      <div class="bar"><div class="k">Rent &amp; Ops</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="v">18%</div></div>
+      <div class="bar signal"><div class="k">EBITDA Margin</div><div class="track"><div class="fill" style="width:22%"></div></div><div class="v">22%</div></div>
+      <div class="bar"><div class="k">Cash-on-Cash</div><div class="track"><div class="fill" style="width:78%"></div></div><div class="v">10.4×</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTACH -->
+<section style="padding:0">
+  <div class="attach">
+    <div class="attach-text">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px">The Attach Effect</div>
+        <h3>One bowl. <em>One shake.</em> One signature basket.</h3>
+        <p style="margin-top:14px">68% of bowl orders attach a 30–50g protein smoothie — the highest attach rate in our category. Every smoothie sold lifts the basket by £5.80 and the margin by ~600 bps.</p>
+      </div>
+      <div class="pills">
+        <span class="p">+£5.80 basket</span>
+        <span class="p">+600bps margin</span>
+        <span class="p">68% attach</span>
+        <span class="p">31–41g protein</span>
+      </div>
+    </div>
+
+    <div class="attach-smoothies">
+      <img src="smoothies.webp" alt="FUUL smoothies"/>
+      <span class="lbl">Shakes &amp; Smoothies · 31–50g</span>
+    </div>
+
+    <div class="attach-r">
+      <div>
+        <div class="head">AOV Breakdown · mature site</div>
+        <div class="aov" style="margin-top:14px">£8.40<small>Per Transaction</small></div>
+      </div>
+      <div class="stack">
+        <div class="row"><span class="name">Bowl / Wrap</span><span>£6.10</span></div>
+        <div class="row"><span class="name">Smoothie attach</span><span>£1.85</span></div>
+        <div class="row"><span class="name">Snack / Side</span><span>£0.30</span></div>
+        <div class="row"><span class="name">Coffee</span><span>£0.15</span></div>
+        <div class="stack-bar">
+          <i class="a" style="width:73%"></i>
+          <i class="c" style="width:22%"></i>
+          <i class="b" style="width:3.5%"></i>
+          <i class="d" style="width:1.5%"></i>
+        </div>
+      </div>
+      <div class="footnote">× 225 tx/day × 29 trading days = £85,072/mo mature revenue</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHART -->
+<section style="padding:0">
+  <div class="chart">
+    <div class="chart-l">
+      <div class="eyebrow">Transaction Ramp · Site 01</div>
+      <h3>From soft launch to <em>steady state</em> in 9 months.</h3>
+      <p>Daily transactions ramp from 80 in month one to a mature 225 by month nine — driven by morning commuter discovery and a building lunchtime regular base.</p>
+      <p class="footnote">Conservative · contemplates no marketing spend beyond launch.</p>
+    </div>
+    <div class="chart-r">
+      <div class="bars">
+        <div class="b"><div class="col" style="height:35%"></div><div class="val">80</div><div class="lbl">M1</div></div>
+        <div class="b"><div class="col" style="height:48%"></div><div class="val">110</div><div class="lbl">M2</div></div>
+        <div class="b"><div class="col" style="height:58%"></div><div class="val">132</div><div class="lbl">M3</div></div>
+        <div class="b"><div class="col" style="height:66%"></div><div class="val">150</div><div class="lbl">M4</div></div>
+        <div class="b"><div class="col" style="height:74%"></div><div class="val">168</div><div class="lbl">M5</div></div>
+        <div class="b"><div class="col" style="height:80%"></div><div class="val">182</div><div class="lbl">M6</div></div>
+        <div class="b"><div class="col" style="height:86%"></div><div class="val">196</div><div class="lbl">M7</div></div>
+        <div class="b"><div class="col" style="height:92%"></div><div class="val">210</div><div class="lbl">M8</div></div>
+        <div class="b peak"><div class="col" style="height:100%"></div><div class="val">225</div><div class="lbl">M9</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="padding:0">
+  <div class="timeline">
+    <div class="m">
+      <div class="t">Q1 2025</div>
+      <h5>Site 01 · Soho</h5>
+      <p>Storefront opens. Brand and operating model proven on a single high-footfall site.</p>
+    </div>
+    <div class="m">
+      <div class="t">Q4 2025</div>
+      <h5>Site 02 · City</h5>
+      <p>Second site validates repeatability — same kit, same SOPs, same unit economics.</p>
+    </div>
+    <div class="m">
+      <div class="t">Q3 2026</div>
+      <h5>Commissary</h5>
+      <p>Central kitchen unlocks 5+ sites at 30% lower COGS and reliable daily delivery.</p>
+    </div>
+    <div class="m">
+      <div class="t">2027+</div>
+      <h5>10 Sites · Wholesale</h5>
+      <p>Branded grab-and-go in offices, gyms and transport hubs. Retail SKUs follow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETE -->
+<section class="compete">
+  <div style="padding:clamp(48px,5vw,80px) var(--pad);border-bottom:1px solid var(--line)">
+    <div class="eyebrow">Competitive Landscape</div>
+    <h2 class="serif" style="font-weight:300;font-size:clamp(36px,4vw,56px);color:var(--type);letter-spacing:-.02em;margin-top:14px">A category of <em style="color:var(--signal);font-style:italic">one</em>.</h2>
+  </div>
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>30g+ Protein Guaranteed</th>
+        <th>Smoothie Bar Integrated</th>
+        <th>Grab &amp; Go Format</th>
+        <th>Performance Positioning</th>
+        <th>AOV</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fuul">
+        <td class="brand">FUUL</td>
+        <td class="check">●</td>
+        <td class="check">●</td>
+        <td class="check">●</td>
+        <td class="check">●</td>
+        <td>£8.40</td>
+      </tr>
+      <tr>
+        <td class="brand">Pret A Manger</td>
+        <td class="x">○</td>
+        <td class="x">○</td>
+        <td class="check">●</td>
+        <td class="x">○</td>
+        <td>£7.10</td>
+      </tr>
+      <tr>
+        <td class="brand">Soho Coffee</td>
+        <td class="x">○</td>
+        <td class="x">○</td>
+        <td class="check">●</td>
+        <td class="x">○</td>
+        <td>£6.80</td>
+      </tr>
+      <tr>
+        <td class="brand">Joe &amp; The Juice</td>
+        <td class="x">○</td>
+        <td class="check">●</td>
+        <td class="check">●</td>
+        <td class="x">○</td>
+        <td>£7.40</td>
+      </tr>
+      <tr>
+        <td class="brand">Leon</td>
+        <td class="x">○</td>
+        <td class="x">○</td>
+        <td class="check">●</td>
+        <td class="x">○</td>
+        <td>£8.20</td>
+      </tr>
+      <tr>
+        <td class="brand">Protein Haus</td>
+        <td class="check">●</td>
+        <td class="check">●</td>
+        <td class="x">○</td>
+        <td class="check">●</td>
+        <td>£9.10</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftr">
+    <div>
+      <img class="ftr-logo-svg" src="logo-green.svg" alt="FUUL"/>
+      <p style="margin-top:18px">High-performance food, made effortless. Built in London, served in 90 seconds, designed to be remembered.</p>
+    </div>
+    <div>
+      <h6>Entity</h6>
+      <p>FUUL Foods Ltd · Registered in England &amp; Wales · Co. No. 15&nbsp;482&nbsp;901</p>
+      <h6 style="margin-top:24px">Round</h6>
+      <p>£600,000 · SEIS / EIS · pre-money £2.4m</p>
+    </div>
+    <div>
+      <h6>Contact</h6>
+      <p>boaz@fuul.co<br/>+44 (0)20 4538 1900<br/>42 Berwick Street, Soho, London W1F 8RH</p>
+    </div>
+  </div>
+  <div class="meta ftr"><div style="grid-column:1/-1">FUUL · Investor Moodboard v3.1 — Confidential. Distributed under NDA. Figures are management estimates and not a forecast. © 2025 FUUL Foods Ltd.</div></div>
+</footer>
+
+</body>
+</html>
