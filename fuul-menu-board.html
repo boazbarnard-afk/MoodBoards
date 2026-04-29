@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>FUUL — Menu Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#F5F0E6;
+    --surface:#EDE8DC;
+    --type:#2A5238;
+    --signal:#D4820A;
+    --line:rgba(42,82,56,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--base);color:var(--type);font-family:"Inter",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 56px 80px}
+
+  /* Header */
+  .head{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1.5px solid var(--type);padding-bottom:22px;margin-bottom:36px;gap:24px;flex-wrap:wrap}
+  .brand{font-family:"Fraunces",serif;font-weight:600;font-size:54px;letter-spacing:-.02em;line-height:.9}
+  .brand em{font-style:italic;color:var(--signal);font-weight:500}
+  .meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:right;line-height:1.7}
+  .meta b{color:var(--signal);font-weight:500}
+
+  .intro{font-family:"Fraunces",serif;font-size:22px;line-height:1.35;max-width:760px;margin-bottom:48px;font-weight:400}
+  .intro em{color:var(--signal);font-style:italic}
+
+  /* Section */
+  .section{margin-bottom:54px;break-inside:avoid}
+  .s-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px;gap:16px}
+  .s-title{font-family:"Fraunces",serif;font-size:32px;font-weight:600;letter-spacing:-.01em}
+  .s-title em{color:var(--signal);font-style:italic;font-weight:500}
+  .s-tag{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:var(--type);color:var(--base);padding:6px 10px;border-radius:2px}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  thead th{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--type);opacity:.65;text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);font-weight:500}
+  thead th.l{text-align:left}
+  tbody td{padding:14px 8px;border-bottom:1px dashed var(--line);vertical-align:top;text-align:right;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  tbody td.l{text-align:left}
+  tbody tr:last-child td{border-bottom:1px solid var(--line)}
+  .nm{font-family:"Fraunces",serif;font-size:18px;font-weight:600;line-height:1.2;margin-bottom:3px}
+  .desc{font-size:12.5px;line-height:1.4;color:var(--type);opacity:.72;max-width:480px}
+  .px{font-family:"Fraunces",serif;font-size:18px;font-weight:600;color:var(--signal)}
+  .mac{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--type)}
+
+  /* Footer */
+  .ftr{margin-top:56px;background:var(--type);color:var(--base);padding:28px 32px;border-radius:3px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+  .ftr b{color:var(--signal);font-weight:500}
+
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:#fff}
+    .wrap{padding:0;max-width:none}
+    .section{page-break-inside:avoid}
+    .ftr{break-before:auto}
+  }
+
+  @media (max-width:680px){
+    .wrap{padding:28px 20px}
+    .brand{font-size:40px}
+    .s-title{font-size:24px}
+    .nm{font-size:16px}
+    .desc{font-size:11.5px}
+    thead th{font-size:9px;padding:8px 4px}
+    tbody td{padding:10px 4px}
+    .mac{font-size:11px}
+    .px{font-size:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div>
+      <div class="brand">FUUL <em>menu</em></div>
+    </div>
+    <div class="meta">
+      Soho · London<br>
+      Daypart <b>06:30 – 21:00</b><br>
+      30g+ protein · clean macros
+    </div>
+  </header>
+
+  <p class="intro">High-performance food, made effortless. Every dish hits <em>30g+ protein</em>, real macros, no theatre. Built for the rhythm of a working day.</p>
+
+  <!-- PROTEIN BOWLS -->
+  <section class="section">
+    <div class="s-head">
+      <h2 class="s-title">Protein <em>Bowls</em></h2>
+      <span class="s-tag">30–49g protein</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="l">Item</th>
+          <th>Protein</th><th>Carbs</th><th>Fat</th><th>Cals</th><th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l"><div class="nm">Chicken Bowl</div><div class="desc">Roasted chicken, maple squash, wild rice, kale, tahini dressing</div></td>
+          <td class="mac">42g</td><td class="mac">48g</td><td class="mac">14g</td><td class="mac">510</td><td class="px">£11.00</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Hot Honey Chicken</div><div class="desc">Spiced chicken thigh, sweet potato, quinoa, cabbage slaw</div></td>
+          <td class="mac">49g</td><td class="mac">52g</td><td class="mac">16g</td><td class="mac">556</td><td class="px">£12.25</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Miso Salmon</div><div class="desc">Miso-glazed salmon, edamame, white rice, avocado, sesame</div></td>
+          <td class="mac">38g</td><td class="mac">44g</td><td class="mac">18g</td><td class="mac">490</td><td class="px">£11.45</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Mushroom &amp; Tofu</div><div class="desc">Roasted tofu, portobello, chickpeas, quinoa, kale, soy/miso glaze</div></td>
+          <td class="mac">30g</td><td class="mac">46g</td><td class="mac">12g</td><td class="mac">412</td><td class="px">£9.45</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Soy Glazed Tuna</div><div class="desc">Glazed tuna, broccoli, edamame, brown rice, ginger</div></td>
+          <td class="mac">40g</td><td class="mac">46g</td><td class="mac">16g</td><td class="mac">488</td><td class="px">£11.45</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Korean Beef Bowl</div><div class="desc">Gochujang beef, jasmine rice, pickled daikon, cucumber, sesame</div></td>
+          <td class="mac">46g</td><td class="mac">54g</td><td class="mac">18g</td><td class="mac">562</td><td class="px">£12.25</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Peri Peri Chicken</div><div class="desc">Peri peri thigh, roasted corn, black beans, brown rice, slaw</div></td>
+          <td class="mac">44g</td><td class="mac">56g</td><td class="mac">14g</td><td class="mac">538</td><td class="px">£11.00</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Greek Lamb Bowl</div><div class="desc">Spiced lamb mince, tzatziki, roasted pepper, bulgur, feta</div></td>
+          <td class="mac">44g</td><td class="mac">42g</td><td class="mac">20g</td><td class="mac">532</td><td class="px">£12.25</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- WRAPS -->
+  <section class="section">
+    <div class="s-head">
+      <h2 class="s-title"><em>Wraps</em></h2>
+      <span class="s-tag">32–48g protein</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="l">Item</th>
+          <th>Protein</th><th>Carbs</th><th>Fat</th><th>Cals</th><th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l"><div class="nm">Chicken Caesar Wrap</div><div class="desc">Grilled chicken, romaine, parmesan, caesar, high-protein tortilla</div></td>
+          <td class="mac">48g</td><td class="mac">36g</td><td class="mac">14g</td><td class="mac">466</td><td class="px">£9.45</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Tuna Avocado Wrap</div><div class="desc">Soy-lime tuna, guacamole, cucumber, spinach</div></td>
+          <td class="mac">42g</td><td class="mac">32g</td><td class="mac">16g</td><td class="mac">444</td><td class="px">£8.00</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Falafel Protein Wrap</div><div class="desc">Chickpea falafel, hummus, tahini, roasted pepper, spinach</div></td>
+          <td class="mac">32g</td><td class="mac">44g</td><td class="mac">14g</td><td class="mac">434</td><td class="px">£6.45</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">The BIG Omelette Wrap</div><div class="desc">Eggs, cottage cheese, parmesan, sun-dried tomato, spinach</div></td>
+          <td class="mac">36g</td><td class="mac">28g</td><td class="mac">18g</td><td class="mac">418</td><td class="px">£7.25</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Chipotle Steak Wrap</div><div class="desc">Bavette steak, chipotle mayo, black beans, roasted corn, cheddar</div></td>
+          <td class="mac">46g</td><td class="mac">38g</td><td class="mac">18g</td><td class="mac">498</td><td class="px">£9.45</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Smoked Salmon &amp; Cream Cheese</div><div class="desc">Smoked salmon, low-fat cream cheese, capers, dill, cucumber</div></td>
+          <td class="mac">34g</td><td class="mac">30g</td><td class="mac">14g</td><td class="mac">386</td><td class="px">£8.00</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Harissa Chicken Wrap</div><div class="desc">Harissa marinated chicken, roasted aubergine, hummus, rocket</div></td>
+          <td class="mac">44g</td><td class="mac">34g</td><td class="mac">12g</td><td class="mac">422</td><td class="px">£9.45</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- BREAKFAST -->
+  <section class="section">
+    <div class="s-head">
+      <h2 class="s-title"><em>Breakfast</em></h2>
+      <span class="s-tag">30–36g protein</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="l">Item</th>
+          <th>Protein</th><th>Carbs</th><th>Fat</th><th>Cals</th><th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l"><div class="nm">Overnight Protein Oats</div><div class="desc">Oats, whey, almond butter, banana, chia seeds</div></td>
+          <td class="mac">30g</td><td class="mac">52g</td><td class="mac">12g</td><td class="mac">436</td><td class="px">£4.50</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Protein Pancake Stack</div><div class="desc">Buckwheat, whey, eggs, Greek yoghurt, blueberry compote</div></td>
+          <td class="mac">35g</td><td class="mac">48g</td><td class="mac">10g</td><td class="mac">426</td><td class="px">£5.50</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Egg &amp; Feta Pot</div><div class="desc">Scrambled eggs, roasted pepper, feta</div></td>
+          <td class="mac">32g</td><td class="mac">8g</td><td class="mac">22g</td><td class="mac">358</td><td class="px">£5.50</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Greek Yoghurt Pot</div><div class="desc">Strained Greek yoghurt, whey, granola, mixed berry compote</div></td>
+          <td class="mac">34g</td><td class="mac">38g</td><td class="mac">8g</td><td class="mac">364</td><td class="px">£4.50</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Salmon Bagel Bowl</div><div class="desc">Smoked salmon, cottage cheese, soft boiled egg, spinach</div></td>
+          <td class="mac">36g</td><td class="mac">32g</td><td class="mac">14g</td><td class="mac">398</td><td class="px">£6.50</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Turkey Egg White Muffin</div><div class="desc">Turkey, egg white, spinach, cheddar, high-protein muffin</div></td>
+          <td class="mac">—</td><td class="mac">—</td><td class="mac">—</td><td class="mac">—</td><td class="px">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SHAKES & SMOOTHIES (kept as-is from existing moodboard) -->
+  <section class="section">
+    <div class="s-head">
+      <h2 class="s-title">Shakes &amp; <em>Smoothies</em></h2>
+      <span class="s-tag">30–50g protein</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="l">Item</th>
+          <th>Protein</th><th>Carbs</th><th>Fat</th><th>Cals</th><th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l"><div class="nm">Chocolate Peanut Butter</div><div class="desc">Whey, oats, cocoa, banana</div></td>
+          <td class="mac">50g</td><td class="mac">42g</td><td class="mac">14g</td><td class="mac">498</td><td class="px">£6.20</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Berry Vanilla</div><div class="desc">Whey, mixed berries, oats</div></td>
+          <td class="mac">40g</td><td class="mac">38g</td><td class="mac">6g</td><td class="mac">372</td><td class="px">£5.80</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Vanilla Almond</div><div class="desc">Almond milk, vanilla whey, honey</div></td>
+          <td class="mac">35g</td><td class="mac">28g</td><td class="mac">10g</td><td class="mac">336</td><td class="px">£5.80</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Matcha Oat</div><div class="desc">Ceremonial matcha, whey, chia, honey</div></td>
+          <td class="mac">38g</td><td class="mac">36g</td><td class="mac">10g</td><td class="mac">378</td><td class="px">£6.40</td>
+        </tr>
+        <tr>
+          <td class="l"><div class="nm">Salted Caramel</div><div class="desc">Whey, oats, medjool dates</div></td>
+          <td class="mac">42g</td><td class="mac">44g</td><td class="mac">8g</td><td class="mac">412</td><td class="px">£6.40</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="ftr">
+    <span><b>FUUL</b> · Soho · London</span>
+    <span>30g+ protein · real macros · <b>zero theatre</b></span>
+    <span>fuul.co</span>
+  </footer>
+
+</div>
+</body>
+</html>
